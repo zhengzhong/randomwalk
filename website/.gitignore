@@ -5,11 +5,9 @@
 *.min.css.map
 *.min.js
 
-local_env.json
 local_settings.py
 local_urls.py
 
-experimental/
 media/
 symlinks/
 
@@ -17,19 +15,6 @@ symlinks/
 .npmrc
 package-lock.json
 node_modules/
-static/dist/
-
-# Bower
-.bowerrc
-static/bower_components/
-
-# Fabric
-.fabricrc
-
-# Sass
-*.min.css
-*.min.css.map
-.sass-cache/
 
 # PyCharm/IntelliJ IDEA
 .idea/
