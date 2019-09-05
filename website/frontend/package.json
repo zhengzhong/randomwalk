@@ -30,23 +30,22 @@
     "node-sass": "^4.10.0",
     "postcss-loader": "^3.0.0",
     "sass-loader": "^7.0.3",
-    "uglifyjs-webpack-plugin": "^2.1.1",
-    "webpack": "^4.28.3",
+    "webpack": "^4.28.4",
     "webpack-cli": "^3.2.1",
     "webpack-merge": "^4.2.1"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.2.5",
     "@fortawesome/fontawesome-free": "^5.6.3",
-    "bootstrap": "^4.2.1",
+    "bootstrap": "^4.3.1",
     "chart.js": "^2.7.3",
+    "core-js": "^3.2.1",
     "holderjs": "^2.9.6",
     "jquery": "^3.3.1",
     "js-cookie": "^2.2.0",
     "lodash": "^4.17.11",
     "marked": "^0.6.0",
     "moment": "^2.23.0",
-    "popper.js": "^1.14.6",
+    "popper.js": "^1.15.0",
     "prop-types": "^15.6.2",
     "query-string": "^5.1.1",
     "react": "^16.7.0",
@@ -54,7 +53,7 @@
     "react-dom": "^16.7.0",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
-    "toastr": "^2.1.4",
+    "regenerator-runtime": "^0.13.3",
     "whatwg-fetch": "^3.0.0"
   }
 }

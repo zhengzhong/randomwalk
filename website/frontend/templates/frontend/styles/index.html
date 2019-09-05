@@ -8,22 +8,21 @@
     <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <link href="{% static 'frontend/dist/vendors.css' %}" rel="stylesheet"/>
-    <link href="{% static 'frontend/dist/theme_v5.css' %}" rel="stylesheet"/>
+    <link href="{% static 'frontend/dist/common.css' %}" rel="stylesheet"/>
     <title>Frontend :: Theme</title>
     <!--
       For the sake of simplicity, we include all JavaScript bundles in HTML head, so that in each
       included HTML snippet, we will be able to embed JavaScript code that requires jQuery.
       This is not optimal for performance, though.
     -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="{% static 'frontend/dist/vendors.bundle.js' %}"></script>
     <script src="{% static 'frontend/dist/common.bundle.js' %}"></script>
   </head>
 
   <body>
 
-      {% include './_notice.html' %}
-      {% include './_topbar.html' %}
+    {% include './_notice.html' %}
+    {% include './_topbar.html' %}
 
     <div id="main" class="container">
       <div class="row">

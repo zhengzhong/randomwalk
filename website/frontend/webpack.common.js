@@ -6,7 +6,8 @@ const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-// Resolve output directory relative to `__dirname`.
+// Resolve directories relative to `__dirname`.
+const sourceDirectory = path.resolve(__dirname, 'src');
 const outputDirectory = path.resolve(__dirname, 'static/frontend/dist');
 
 
@@ -15,15 +16,7 @@ module.exports = {
 
   entry: {
     // Website-wide stylesheet and JavaScript.
-    common: './src/common.js',
-    theme_pink: './src/theme_pink.js',
-    theme_v5: './src/theme_v5.js',
-  },
-
-  // Prevent bundling of certain imported packages. Those external dependencies will be retrieved
-  // at runtime from a CDN.
-  externals: {
-    jquery: 'jQuery',
+    common: path.resolve(sourceDirectory, 'common/index.js'),
   },
 
   plugins: [
@@ -48,7 +41,7 @@ module.exports = {
     splitChunks: {
       cacheGroups: {
 
-        // Put all react-related packages in a chunk. This is required by single-page-applications.
+        // Put all React-related packages in a chunk. This is required by React-based apps.
         spa: {
           test: /[\\/]node_modules[\\/](prop-types|react|react-dom|react-router-dom)[\\/]/,
           name: 'spa',
