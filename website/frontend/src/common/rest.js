@@ -31,18 +31,48 @@ function makeJSONOptions(method, payload) {
 }
 
 
+function makePostFormOptions(formData) {
+  return {
+    credentials: 'same-origin',
+    headers: {
+      'X-CSRFToken': Cookies.get('csrftoken'),
+      'Accept': 'application/json',
+    },
+    method: 'POST',
+    body: formData,
+  };
+}
+
+
+function createBackendError(message, response) {
+  const error = new Error(message);
+  error.url = response.url;
+  error.status = response.status;
+  return error;
+}
+
+
 function handleJSONResponse(response) {
   if (!response) {
-    throw new Error(`Invalid response received: ${response}`);
-  } else if (!response.ok) {
-    throw new Error(`Response from ${response.url} is not OK (status: ${response.status}).`);
-  } else {
-    try {
-      return response.json();
-    } catch (err) {
-      throw new Error(`Fail to parse JSON response from ${response.url}: ${err}`);
-    }
+    throw new Error('Invalid empty response received from server.');
   }
+  if (!response.ok) {
+    // When an error occurred, detail may be provided as the JSON. Try to parse that out.
+    // Note that `response.json()` returns a Promise, not the parsed JSON object.
+    return response.json()
+      .then((data) => {
+        console.log(`Got error JSON with status code: ${response.status} ( ${response.url}`);
+        throw createBackendError(data.message || 'An error occurred.', response);
+      }, () => {
+        console.log(`Fail to get error JSON with status code: ${response.status} ( ${response.url}`);
+        throw createBackendError('An error occurred.', response);
+      });
+  }
+  if (response.status === 204) {
+    // 204 - No content.
+    return null;
+  }
+  return response.json();
 }
 
 
@@ -58,6 +88,12 @@ export default {
   post(url, payload) {
     console.log(`POST ${url}`);
     return fetch(url, makeJSONOptions('POST', payload))
+      .then(response => handleJSONResponse(response));
+  },
+
+  postForm(url, formData) {
+    console.log(`POST (form) ${url}`);
+    return fetch(url, makePostFormOptions(formData))
       .then(response => handleJSONResponse(response));
   },
 

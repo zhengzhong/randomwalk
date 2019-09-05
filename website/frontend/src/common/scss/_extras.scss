@@ -4,10 +4,12 @@ code {
   font-size: 100%;
 }
 
-.text-code {
-  color: inherit;
-  font-family: $font-family-monospace;
-  word-break: break-word;
+.text-sm {
+  font-size: 90%;
+}
+
+.text-xl {
+  font-size: 250%;
 }
 
 section, .section {
@@ -19,12 +21,17 @@ section, .section {
   font-weight: 300;
 }
 
+i.fa, i.far, i.fas, i.fab {
+  width: 1.25rem; // Fixed-width Font-Awesome icon.
+}
+
 // Render the button element the same way as an anchor element.
 button.anchor {
   padding: 0;
   margin: 0;
   border: 0;
   cursor: pointer;
+  outline: none;
   color: $link-color;
   font-weight: inherit;
   text-decoration: $link-decoration;
@@ -34,6 +41,11 @@ button.anchor {
     color: $link-hover-color;
     text-decoration: $link-hover-decoration;
   }
+
+  &.no-underline,
+  &.no-underline:hover {
+    text-decoration: none;
+  }
 }
 
 hr.solid {
@@ -42,6 +54,18 @@ hr.solid {
 
 hr.dashed {
   border-top: 1px dashed #ddd;
+}
+
+.form-control-xl {
+  height: auto;
+  font-size: 2rem;
+}
+
+// Combination of `d-flex justify-content-between align-items-center`.
+.flex-justified-center {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
 }
 
 // ----- Buttons -----
@@ -65,6 +89,10 @@ hr.dashed {
 }
 
 // ----- Badge -----
+
+.badge.badge-lg {
+  font-size: 100%;
+}
 
 .badge.badge-muted {
   color: $gray-600;
@@ -91,6 +119,10 @@ hr.dashed {
 
 .badge-group {
   display: inline-flex;
+
+  &.badge-group-lg > .badge {
+    font-size: 100%;
+  }
 
   > .badge:not(:first-child):not(:last-child) {
     border-radius: 0;

@@ -1,0 +1,15 @@
+@import "~bootstrap/scss/variables";
+
+.card-material {
+  padding: 1rem;
+  &:hover {
+    // offset-x offset-y blur-radius spread-radius color
+    // See: https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow
+    box-shadow: 0 3px 10px 0 rgba(0, 0, 0, .1);
+  }
+}
+
+.card-underlined {
+  padding: 1rem;
+  border-bottom: 1px solid $gray-200;
+}

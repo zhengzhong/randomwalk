@@ -1,7 +1,13 @@
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins/breakpoints";
 
-img.img-160 {
+img.img-w80 {
+  width: 80px;
+  max-width: 80px;
+  height: auto;
+}
+
+img.img-w160 {
   width: 160px;
   max-width: 160px;
   height: auto;

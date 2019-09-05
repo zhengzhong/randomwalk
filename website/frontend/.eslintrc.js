@@ -1,15 +1,21 @@
 module.exports = {
-  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "plugins": ["react"],
   "env": {
     "browser": true
   },
   "parserOptions": {
     "ecmaVersion": 6,
-    "ecmaFeatures": { "jsx": true }
+    "ecmaFeatures": { "jsx": true },
+    "sourceType": "module"
   },
+  "extends": "airbnb",
   "rules": {
     // Windows style (CRLF) or UNIX style (LF only) are both OK.
     "linebreak-style": 0,
+
+    // It's OK to use console. Console calls should be dropped in production build.
+    "no-console": 0,
 
     // It's OK to use ++/-- in a for loop.
     "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
