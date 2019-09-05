@@ -1,0 +1,34 @@
+@import "~bootstrap/scss/variables";
+
+.navbar {
+  .navbar-brand {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    .navbar-brand-logo {
+      margin: 0 .25rem 0 0;
+      padding: 0;
+      max-height: 36px;
+    }
+    .navbar-brand-text {
+      vertical-align: middle;
+    }
+  }
+
+  .navbar-nav .dropdown-menu form {
+    margin: 0;
+    padding: .5rem 1.5rem;
+  }
+}
+
+.navbar.navbar-light {
+  .navbar-nav > li {
+    > .nav-link:hover,
+    > .nav-link:focus {
+      margin-bottom: -4px;
+      border-bottom: 4px solid $primary;
+      color: $primary;
+    }
+  }
+}

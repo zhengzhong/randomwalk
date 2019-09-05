@@ -1,0 +1,48 @@
+@import "~bootstrap/scss/variables";
+
+.alert {
+  border-left-width: .25rem;
+  border-left-style: solid;
+}
+
+.alert-primary {
+  color: $primary;
+  background-color: #fff;
+  border-color: $primary;
+  .alert-link {
+    color: darken($primary, 20%);
+  }
+}
+
+.alert-secondary {
+  color: $secondary;
+  background-color: #fff;
+  border-color: $secondary;
+  .alert-link {
+    color: darken($secondary, 20%);
+  }
+}
+
+.alert-success {
+  border-color: $success;
+}
+
+.alert-warning {
+  border-color: $warning;
+}
+
+.alert-danger {
+  border-color: $danger;
+}
+
+.alert-info {
+  border-color: $info;
+}
+
+.alert-light {
+  border-color: #d8d8d8;
+}
+
+.alert-dark {
+  border-color: $dark;
+}

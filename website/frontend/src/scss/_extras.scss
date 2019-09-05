@@ -1,0 +1,194 @@
+@import "~bootstrap/scss/variables";
+
+code {
+  font-size: 100%;
+}
+
+.text-code {
+  color: inherit;
+  font-family: $font-family-monospace;
+  word-break: break-word;
+}
+
+section, .section {
+  margin-top: 0;
+  margin-bottom: 2rem;
+}
+
+.lighter {
+  font-weight: 300;
+}
+
+// Render the button element the same way as an anchor element.
+button.anchor {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  cursor: pointer;
+  color: $link-color;
+  font-weight: inherit;
+  text-decoration: $link-decoration;
+  background-color: transparent;
+  -webkit-text-decoration-skip: objects;
+  &:hover {
+    color: $link-hover-color;
+    text-decoration: $link-hover-decoration;
+  }
+}
+
+hr.solid {
+  border-top: 1px solid #ddd;
+}
+
+hr.dashed {
+  border-top: 1px dashed #ddd;
+}
+
+// ----- Buttons -----
+
+.btn.btn-light-primary {
+  color: $gray-900;
+  background-color: $gray-100;
+  border-color: $gray-100;
+
+  &:hover, &:active, &.active {
+    color: $white;
+    background-color: $primary;
+    border-color: $primary;
+  }
+
+  &.disabled, &:disabled {
+    color: $gray-800;
+    background-color: $gray-100;
+    border-color: $gray-100;
+  }
+}
+
+// ----- Badge -----
+
+.badge.badge-muted {
+  color: $gray-600;
+  background-color: $gray-400;
+}
+
+.badge.badge-outline {
+  background-color: transparent;
+  border-width: 1px;
+  border-style: solid;
+
+  @each $color, $value in $theme-colors {
+    &.badge-#{$color} {
+      color: $value;
+      border-color: $value;
+    }
+  }
+
+  &.badge-muted {
+    color: $gray-600;
+    border-color: $gray-400;
+  }
+}
+
+.badge-group {
+  display: inline-flex;
+
+  > .badge:not(:first-child):not(:last-child) {
+    border-radius: 0;
+  }
+
+  > .badge:first-child {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  > .badge:last-child {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  > .badge:not(:first-child) {
+    border-left-width: 0;
+  }
+}
+
+// ----- Breadcrumb with addons -----
+
+// Usage:
+//
+//   <nav class="breadcrumb-with-addons">
+//     <a className="breadcrumb-circle" href="/path/back">&laquo;</a>
+//     <ol className="breadcrumb"> ... </ol>
+//     <div class="breadcrumb-actions">
+//       <a href="#"><i class="fas fa-sync"></i></a>
+//     </div>
+//   </nav>
+
+.breadcrumb-with-addons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+
+  .breadcrumb,
+  .breadcrumb-circle,
+  .breadcrumb-actions {
+    align-self: center;
+  }
+
+  .breadcrumb {
+    flex-grow: 1;
+    flex-wrap: nowrap;
+  }
+
+  .breadcrumb-circle {
+    // make it a circle
+    display: block;
+    padding: 0;
+    width: 64px;
+    height: 64px;
+    border: 4px solid #fff;
+    border-radius: 50%;
+    line-height: 56px; // 64px - 4px - 4px
+    text-align: center;
+
+    // play nice with breadcrumb
+    margin: 0 0 1rem -4px; // compensate the white border on the left
+    background-color: $gray-200;
+    z-index: 100; // on top of breadcrumb
+
+    // play nice with both a and button
+    outline: none;
+    text-decoration: none;
+  }
+
+  // play nice with both anchor and button
+  a.breadcrumb-circle:hover,
+  a.breadcrumb-circle:focus,
+  button.breadcrumb-circle:hover,
+  button.breadcrumb-circle:focus {
+    outline: none;
+    text-decoration: none;
+    background-color: darken($gray-200, 5%);
+  }
+
+  .breadcrumb-circle ~ .breadcrumb {
+    // connect with the back link
+    margin-left: -32px;
+    padding-left: 48px;
+  }
+
+  .breadcrumb-actions {
+    // play nice with breadcrumb
+    display: block;
+    margin: 0 0 1rem 0;
+    padding: .75rem 1rem;
+    border-radius: .25rem;
+    background-color: $gray-200;
+    z-index: 100; // on top of breadcrumb
+  }
+
+  .breadcrumb ~ .breadcrumb-actions {
+    // connect with breadcrumb
+    margin-left: -.25rem;
+    padding-left: .25rem;
+  }
+}

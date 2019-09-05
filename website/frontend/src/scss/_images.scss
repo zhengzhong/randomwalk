@@ -1,0 +1,14 @@
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins/breakpoints";
+
+img.img-160 {
+  width: 160px;
+  max-width: 160px;
+  height: auto;
+
+  @include media-breakpoint-down(sm) {
+    width: 80px;
+    max-width: 80px;
+    height: auto;
+  }
+}

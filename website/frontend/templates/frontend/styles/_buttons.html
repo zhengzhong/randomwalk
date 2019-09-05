@@ -1,0 +1,144 @@
+<section id="buttons">
+
+  <h2 class="display-4">Buttons</h2>
+
+  <section>
+    <ul class="list-inline">
+      <li class="list-inline-item"><button type="button" class="btn btn-primary">Primary</button></li>
+      <li class="list-inline-item"><button type="button" class="btn btn-secondary">Secondary</button></li>
+      <li class="list-inline-item"><button type="button" class="btn btn-light">Light for Cancel</button></li>
+      <li class="list-inline-item"><button type="button" class="btn btn-danger">Danger for Destructive Action</button></li>
+      <li class="list-inline-item"><button type="button" class="btn btn-link">Link</button></li>
+    </ul>
+    <ul class="list-inline">
+      <li class="list-inline-item"><button type="button" class="btn btn-outline-primary">Primary (Outline)</button></li>
+      <li class="list-inline-item"><button type="button" class="btn btn-outline-secondary">Secondary (Outline)</button></li>
+    </ul>
+    <div class="p-4 mb-2 bg-primary text-white">
+      <button type="button" class="btn btn-outline-light">Light (Outline, Typically used on dark background)</button>
+    </div>
+  </section>
+
+  <section>
+    <h3>Button tags</h3>
+    <ul class="list-inline">
+      <li class="list-inline-item"><a class="btn btn-primary" href="#" role="button">Link</a></li>
+      <li class="list-inline-item"><button class="btn btn-primary" type="submit">Button</button></li>
+      <li class="list-inline-item"><input class="btn btn-primary" type="button" value="Button Input"></li>
+      <li class="list-inline-item"><input class="btn btn-primary" type="submit" value="Submit Input"></li>
+      <li class="list-inline-item"><input class="btn btn-primary" type="reset" value="Reset Input"></li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Sizes</h3>
+    <p>
+      <button type="button" class="btn btn-primary btn-lg">Large button</button>
+      <button type="button" class="btn btn-secondary btn-lg">Large button</button>
+    </p>
+    <p>
+      <button type="button" class="btn btn-primary btn-sm">Large button</button>
+      <button type="button" class="btn btn-secondary btn-sm">Large button</button>
+    </p>
+    <p>
+      <button type="button" class="btn btn-primary btn-lg btn-block">Block level button</button>
+      <button type="button" class="btn btn-secondary btn-lg btn-block">Block level button</button>
+    </p>
+  </section>
+
+  <section>
+    <h3>Button states</h3>
+    <p>
+      <a href="#" class="btn btn-primary" role="button">Primary link (normal)</a>
+      <a href="#" class="btn btn-primary active" role="button">Primary link (active)</a>
+      <a href="#" class="btn btn-primary disabled" role="button">Primary link (disabled)</a>
+    </p>
+    <p>
+      <a href="#" class="btn btn-secondary" role="button">Secondary link (normal)</a>
+      <a href="#" class="btn btn-secondary active" role="button">Secondary link (active)</a>
+      <a href="#" class="btn btn-secondary disabled" role="button">Secondary link (disabled)</a>
+    </p>
+    <p>
+      <button type="button" class="btn btn-primary" disabled>Primary button (disabled)</button>
+      <button type="button" class="btn btn-secondary" disabled>Secondary button (disabled)</button>
+    </p>
+  </section>
+
+  <section>
+    <h3>Checkbox and radio buttons</h3>
+    <div class="btn-group-toggle mb-2" data-toggle="buttons">
+      <label class="btn btn-primary active">
+        <input type="checkbox" checked autocomplete="off"> Checked
+      </label>
+    </div>
+    <div class="btn-group btn-group-toggle mb-2" data-toggle="buttons">
+      <label class="btn btn-secondary active">
+        <input type="radio" name="options" id="option1" autocomplete="off" checked> Active
+      </label>
+      <label class="btn btn-secondary">
+        <input type="radio" name="options" id="option2" autocomplete="off"> Radio
+      </label>
+      <label class="btn btn-secondary">
+        <input type="radio" name="options" id="option3" autocomplete="off"> Radio
+      </label>
+    </div>
+  </section>
+
+  <section>
+    <h3>Button group</h3>
+    <div class="btn-toolbar mb-4" role="toolbar">
+      <div class="btn-group mr-2" role="group">
+        <button type="button" class="btn btn-primary">One</button>
+        <button type="button" class="btn btn-primary">Two</button>
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">More</button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Three</a>
+            <a class="dropdown-item" href="#">Four</a>
+          </div>
+        </div>
+      </div>
+      <div class="btn-group mr-2" role="group">
+        <button type="button" class="btn btn-light">One</button>
+        <button type="button" class="btn btn-light">Two</button>
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">More</button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Three</a>
+            <a class="dropdown-item" href="#">Four</a>
+          </div>
+        </div>
+      </div>
+      <div class="btn-group mr-2" role="group">
+        <button type="button" class="btn btn-outline-primary">One</button>
+        <button type="button" class="btn btn-outline-primary">Two</button>
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown">More</button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Three</a>
+            <a class="dropdown-item" href="#">Four</a>
+          </div>
+        </div>
+      </div>
+      <div class="btn-group mr-2" role="group">
+        <button type="button" class="btn btn-secondary">Left</button>
+        <button type="button" class="btn btn-secondary">Right</button>
+      </div>
+    </div>
+    <p>Button group can also be sized.</p>
+    <div class="mb-2">
+      <div class="btn-group btn-group-sm" role="group">
+        <button type="button" class="btn btn-primary">One</button>
+        <button type="button" class="btn btn-primary">Two</button>
+        <div class="btn-group btn-group-sm" role="group">
+          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">More</button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Three</a>
+            <a class="dropdown-item" href="#">Four</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</section>

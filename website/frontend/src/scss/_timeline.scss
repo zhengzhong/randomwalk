@@ -1,0 +1,49 @@
+@import "~bootstrap/scss/variables";
+
+$timeline-border-color: $gray-300 !default;
+$timeline-item-spacer: 1.5rem !default;
+$timeline-icon-size: 3rem !default;
+
+// A timeline is organized in an unstyled list.
+.timeline {
+
+  > li {
+    position: relative;
+    list-style-type: none;
+    margin-left: 0;
+    padding-left: 0;
+
+    // Vertical ruler on the left.
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background-color: $timeline-border-color;
+      z-index: 0;
+    }
+
+    // Icon on top of the vertical ruler.
+    .timeline-icon {
+      position: absolute;
+      top: $timeline-item-spacer;  // Align with the item content.
+      left: -.5 * $timeline-icon-size;
+      width: $timeline-icon-size;
+      height: $timeline-icon-size;
+      line-height: $timeline-icon-size;
+      border-radius: 50%;
+      background: #fff;
+      border: 2px solid $timeline-border-color;
+      z-index: 10;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-left: $timeline-icon-size;  // Leave space for the icon on the left.
+      padding: $timeline-item-spacer 0 $timeline-item-spacer 0;
+      min-height: $timeline-icon-size + $timeline-item-spacer;  // At least higher than the icon.
+      border-bottom: 1px dashed $timeline-border-color;
+    }
+  }
+}

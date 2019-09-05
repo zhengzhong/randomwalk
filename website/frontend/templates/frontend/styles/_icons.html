@@ -1,0 +1,39 @@
+<section id="icons">
+
+  <h2 class="display-4">Icons</h2>
+  <p class="lead">Wrapper classes on <a href="https://fontawesome.com/">Font Awesome</a>.</p>
+
+  <section class="container-fluid">
+    <div id="icons-container" class="row"></div>
+  </section>
+
+  <div style="display: none">
+    <div class="js-icon-elem col-6 col-md-3 text-center border">
+      <div class="my-1 text-muted" style="font-size: 1.5rem;">
+        <i class="js-icon"></i>
+      </div>
+      <div class="my-1 nowrap">
+        <span class="js-name"></span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var icons = [
+      'ic-check', 'ic-cogs', 'ic-ellipsis', 'ic-exclamation', 'ic-home', 'ic-info', 'ic-phone', 'ic-question',
+      'ic-sign-in', 'ic-sign-out', 'ic-spinner', 'ic-user', 'ic-weixin'
+    ];
+    $(function() {
+      var $iconsContainer = $('#icons-container');
+      var $iconElemPrototype = $('.js-icon-elem').first();
+      for (var i = 0; i < icons.length; i++) {
+        var name = icons[i];
+        var $iconElem = $iconElemPrototype.clone();
+        $('.js-icon', $iconElem).addClass('ic ' + name);
+        $('.js-name', $iconElem).text(name);
+        $iconsContainer.append($iconElem);
+      }
+    });
+  </script>
+
+</section>

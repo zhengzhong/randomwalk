@@ -1,0 +1,141 @@
+// This file wraps Font Awesome 5 Free icons. It's based on the Font Awesome's own CSS file
+// (`@fortawesome/fontawesome-free/css/all.css`), which needs to be loaded/imported separately.
+//
+// See: https://fontawesome.com/cheatsheet
+
+@import "~@fortawesome/fontawesome-free/scss/variables";
+
+.ic {
+  // Base (copied from: @fortawesome/fontawesome-free/scss/_core.scss)
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+  // Fixed width
+  text-align: center;
+  width: 1.25em;
+}
+
+@mixin solid {
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+}
+
+@mixin regular {
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 400;
+}
+
+@mixin brands {
+  font-family: 'Font Awesome 5 Brands';
+}
+
+// ---------- Semantic Icons ----------
+
+.ic-check {
+  @include solid;
+  &:before { content: fa-content($fa-var-check-circle); }
+}
+
+.ic-cogs {
+  @include solid;
+  &:before { content: fa-content($fa-var-cogs); }
+}
+
+.ic-ellipsis {
+  @include solid;
+  &:before { content: fa-content($fa-var-ellipsis-h); }
+}
+
+.ic-exclamation {
+  @include solid;
+  &:before { content: fa-content($fa-var-exclamation-triangle); }
+}
+
+.ic-home {
+  @include solid;
+  &:before { content: fa-content($fa-var-home); }
+}
+
+.ic-id-card {
+  @include solid;
+  &:before { content: fa-content($fa-var-id-card); }
+}
+
+.ic-info {
+  @include solid;
+  &:before { content: fa-content($fa-var-info-circle); }
+}
+
+.ic-phone {
+  @include solid;
+  &:before { content: fa-content($fa-var-phone); }
+}
+
+.ic-question {
+  @include solid;
+  &:before { content: fa-content($fa-var-question-circle); }
+}
+
+.ic-search {
+  @include solid;
+  &:before { content: fa-content($fa-var-search); }
+}
+
+.ic-sign-in {
+  @include solid;
+  &:before { content: fa-content($fa-var-sign-in-alt); }
+}
+
+.ic-sign-out {
+  @include solid;
+  &:before { content: fa-content($fa-var-sign-in-alt); }
+}
+
+.ic-spinner {
+  @include solid;
+  &:before { content: fa-content($fa-var-spinner); }
+}
+
+.ic-user {
+  @include solid;
+  &:before { content: fa-content($fa-var-user); }
+}
+
+.ic-weixin {
+  @include brands;
+  &:before { content: fa-content($fa-var-weixin); }
+}
+
+// ---------- The spin animatin ----------
+// Copied from `fa-spin`
+
+.ic-spin {
+  -webkit-animation: ic-spin 2s infinite linear;
+  animation: ic-spin 2s infinite linear;
+}
+
+@-webkit-keyframes ic-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ic-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}

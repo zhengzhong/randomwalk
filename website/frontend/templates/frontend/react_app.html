@@ -1,0 +1,26 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <link href="{% static 'frontend/dist/vendors.css' %}" rel="stylesheet"/>
+    <link href="{% static 'frontend/dist/theme_pink.css' %}" rel="stylesheet"/>
+    {% if app_css %}
+      <link href="{% static app_css %}" rel="stylesheet"/>
+    {% endif %}
+    <title>Bug Garden</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="{% static 'frontend/dist/vendors.bundle.js' %}"></script>
+    <script src="{% static 'frontend/dist/common.bundle.js' %}"></script>
+    <script src="{% static 'frontend/dist/spa.bundle.js' %}"></script>
+    <script>
+      window.appRouterBasename = '{{ app_router_basename|escapejs }}';
+    </script>
+    <script src="{% static app_js %}"></script>
+  </body>
+</html>

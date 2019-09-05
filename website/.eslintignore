@@ -1,0 +1,6 @@
+# Files and directories that are to be ignored by ESLint.
+# Note: /node_modules/* and /bower_components/* in the project root are ignored by default.
+# See: https://eslint.org/docs/user-guide/configuring#ignoring-files-and-directories
+
+build/*
+static/*

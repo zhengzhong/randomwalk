@@ -1,0 +1,122 @@
+@import "~bootstrap/scss/variables";
+
+// CSS-based star rating (with 5 stars), which does not require JavaScript.
+
+$star-character: "\2605";  // The unicode black star character.
+$star-character-x5: "\2605\2605\2605\2605\2605";
+$star-font-size: 120%;
+
+@mixin as-icon($icon-text) {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+  letter-spacing: .15rem;
+  // Force to use font family that renders black-star well.
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: $star-font-size;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  &:before {
+    content: $icon-text;
+  }
+}
+
+// -----------------------------------------------------------------------------------------------
+
+// The `stars` inline element displays 5 stars in read-only mode. It uses 5 stars in gray color as
+// its background layer.
+//
+// Usage:
+//
+//   <span class="stars">
+//     <span class="stars-fill" style="width: [percentage];"></span>
+//   </span>
+
+.stars {
+  @include as-icon($star-character-x5);
+  color: #999;
+
+  // This nested class should be used in combination with `style="width: [percentage]"`.
+  .stars-fill {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    white-space: nowrap;
+    color: $primary;
+    overflow: hidden;  // Display only the part as specified by `width`.
+    &:before {
+      content: $star-character-x5;
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------------------------
+
+//
+// The `.stars-input` inline element (could be a <span>) contains 5 radio inputs and labels in
+// **reversed order** (from 5 to 1) -- The CSS will flip the order.
+//
+// Usage:
+//
+// <span class="stars-input">
+//   <input type="radio" id="star5" name="rating" value="5"/><label for="star5"></label>
+//   <input type="radio" id="star4" name="rating" value="4"/><label for="star4"></label>
+//   <input type="radio" id="star3" name="rating" value="3"/><label for="star3"></label>
+//   <input type="radio" id="star2" name="rating" value="2"/><label for="star2"></label>
+//   <input type="radio" id="star1" name="rating" value="1"/><label for="star1"></label>
+// </span>
+//
+// This CSS-powered stars input is inspired by:
+//
+// - https://codepen.io/jamesbarnett/pen/vlpkh
+// - https://codepen.io/lsirivong/pen/ekBxI
+//
+// See also:
+//
+// - The ~ CSS selector: https://stackoverflow.com/a/10782297
+// - The + CSS selector: https://stackoverflow.com/a/1139781
+//
+
+.stars-input {
+
+  // Flip the order so that:
+  // - Inputs will be displayed in correct order, from 1 to 5.
+  // - Each label is displayed before its associated radio input -- This will allow us to use the
+  //   + and ~ CSS selectors.
+  unicode-bidi: bidi-override;
+  direction: rtl;
+
+  // Hide the radio inupt.
+  & > input {
+    display: none;
+  }
+
+  // Show each label as an empty star by default.
+  & > label {
+    @include as-icon($star-character);
+    color: #ddd;
+    cursor: pointer;
+    margin: 0;
+  }
+
+  // Highlight stars (labels) which follow the checked input with a darkened color.
+  & > input:checked ~ label {
+    color: darken($primary, 10%)
+  }
+
+  // Highlight the hovered star and all its following siblings with a saturated color.
+  & > input + label:hover,
+  & > input + label:hover ~ label {
+    color: saturate($primary, 100%)
+  }
+
+  // Sizing.
+  &.stars-input-lg {
+    font-size: 1.5rem;
+  }
+  &.stars-input-xl {
+    font-size: 2.5rem;
+  }
+}

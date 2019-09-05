@@ -1,0 +1,21 @@
+# OS X
+.DS_Store
+
+# Temporary and backup files
+*~
+*~.*
+*.bak
+*.bak.*
+
+# VSCode
+/.vscode/
+
+# Explicitly excluded from version control
+*.vcignore
+*.vcignore.*
+
+# Misc.
+*.log
+*.log.*
+*.py[co]
+*.zip

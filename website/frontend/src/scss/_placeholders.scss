@@ -1,0 +1,62 @@
+@keyframes shimming {
+  from {
+    background-color: #ddd;
+  }
+  to {
+    background-color: #fff;
+  }
+}
+
+.placeholder {
+  animation: shimming 1s linear 0s infinite;
+  height: 1rem;
+
+  &.placeholder-w25 {
+    width: 25%;
+  }
+
+  &.placeholder-w50 {
+    width: 50%;
+  }
+
+  &.placeholder-w75 {
+    width: 75%;
+  }
+
+  &.placeholder-h1 {
+    height: 2.25rem;
+  }
+
+  &.placeholder-h2 {
+    height: 1.75rem;
+  }
+
+  &.placeholder-p {
+    margin-bottom: .5rem;
+  }
+
+  &.placeholder-cell {
+    height: 1.5rem;
+  }
+
+  &.placeholder-img,
+  &.placeholder-img-sm,
+  &.placeholder-img-lg {
+    display: inline;
+  }
+
+  &.placeholder-img {
+    width: 100px;
+    height: 100px;
+  }
+
+  &.placeholder-img-sm {
+    width: 50px;
+    height: 50px;
+  }
+
+  &.placeholder-img-lg {
+    width: 200px;
+    height: 200px;
+  }
+}

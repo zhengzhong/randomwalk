@@ -1,0 +1,42 @@
+//
+// - #topbar
+// - #main
+// - #footer
+
+#main {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+// ---------- Display utilities for webview -------------------------------------------------------
+
+// Hidden by default. Displayed (block or inline) only when shown in webview.
+.d-webview-block, .d-webview-inline {
+  display: none;
+}
+
+// Display by default. Hidden only when shown in webview.
+.d-webview-none {
+  display: inherit;
+}
+
+// The `webview` class is supposed to be added to the `<body>` element when the page is embedded
+// in a web view inside a mobile app (iOS or Android).
+.webview {
+
+  .d-webview-block {
+    display: block;
+  }
+
+  .d-webview-inline {
+    display: inline;
+  }
+
+  .d-webview-hidden {
+    display: none;
+  }
+
+  #notice, #topbar, #footer {
+    display: none;
+  }
+}

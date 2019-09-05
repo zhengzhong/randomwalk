@@ -1,0 +1,96 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <link href="{% static 'frontend/dist/vendors.css' %}" rel="stylesheet"/>
+    <link href="{% static 'frontend/dist/theme_v5.css' %}" rel="stylesheet"/>
+    <title>Frontend :: Theme</title>
+    <!--
+      For the sake of simplicity, we include all JavaScript bundles in HTML head, so that in each
+      included HTML snippet, we will be able to embed JavaScript code that requires jQuery.
+      This is not optimal for performance, though.
+    -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="{% static 'frontend/dist/vendors.bundle.js' %}"></script>
+    <script src="{% static 'frontend/dist/common.bundle.js' %}"></script>
+  </head>
+
+  <body>
+
+      {% include './_notice.html' %}
+      {% include './_topbar.html' %}
+
+    <div id="main" class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <aside>
+            <h4 class="lighter">Frontend</h4>
+            <ul class="list-unstyled">
+              <li><a href="#intro">Introduction</a></li>
+            </ul>
+          </aside>
+          <aside>
+            <h4 class="lighter">Components</h4>
+            <ul class="list-unstyled">
+              <li><a href="#alerts">Alerts</a></li>
+              <li><a href="#badge">Badge</a></li>
+              <li><a href="#breadcrumb">Breadcrumb</a></li>
+              <li><a href="#buttons">Buttons</a></li>
+              <li><a href="#card">Card</a></li>
+              <li><a href="#form">Form</a></li>
+              <li><a href="#list-group">List Group</a></li>
+              <li><a href="#media">Media</a></li>
+              <li><a href="#modal">Modal</a></li>
+              <li><a href="#navs">Navs</a></li>
+              <li><a href="#pagination">Pagination</a></li>
+              <li><a href="#tooltips">Tooltips</a></li>
+            </ul>
+          </aside>
+          <aside>
+            <h4 class="lighter">Extras</h4>
+            <ul class="list-unstyled">
+              <li><a href="#extras">Extras</a></li>
+              <li><a href="#icons">Icons</a></li>
+              <li><a href="#placeholders">Placeholders</a></li>
+              <li><a href="#stars">Stars</a></li>
+              <li><a href="#timeline">Timeline</a></li>
+            </ul>
+          </aside>
+        </div>
+        <div class="col-md-9">
+          <main>
+            {% include './_intro.html' %}
+            {% include './_alert.html' %}
+            {% include './_badge.html' %}
+            {% include './_breadcrumb.html' %}
+            {% include './_buttons.html' %}
+            {% include './_card.html' %}
+            {% include './_form.html' %}
+            {% include './_list_group.html' %}
+            {% include './_media.html' %}
+            {% include './_modal.html' %}
+            {% include './_navs.html' %}
+            {% include './_pagination.html' %}
+            {% include './_tooltips.html' %}
+
+            {% include './_extras.html' %}
+            {% include './_icons.html' %}
+            {% include './_placeholders.html' %}
+            {% include './_stars.html' %}
+            {% include './_timeline.html' %}
+          </main>
+        </div>
+      </div>
+    </div>
+
+    {% include './_footer.html' %}
+
+  </body>
+
+</html>
+
