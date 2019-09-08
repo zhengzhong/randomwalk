@@ -17,6 +17,9 @@ module.exports = {
   entry: {
     // Website-wide stylesheet and JavaScript.
     common: path.resolve(sourceDirectory, 'common/index.js'),
+
+    // Apps.
+    activities: path.resolve(sourceDirectory, 'activities/index.jsx'),
   },
 
   plugins: [

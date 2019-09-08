@@ -46,6 +46,8 @@ module.exports = {
     // Deprecated. See: https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/label-has-for.md
     "jsx-a11y/label-has-for": 0,
 
+    "jsx-a11y/label-has-associated-control": ["error", { assert: "either" } ],
+
     // Destructuring assignment should be used as appropriate. No need to enforce its usage.
     "react/destructuring-assignment": 0,
 
