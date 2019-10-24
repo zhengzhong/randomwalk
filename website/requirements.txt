@@ -1,0 +1,6 @@
+Django==2.2.3
+djangorestframework==3.10.3
+
+# Required by DRF to generate dynamic OpenAPI schema.
+PyYAML==5.1.2
+uritemplate==3.0.0
