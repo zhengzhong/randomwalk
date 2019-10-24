@@ -1,0 +1,28 @@
+// Customized styles for React components.
+
+// [react-datepicker](https://reactdatepicker.com/)
+
+@import "~react-datepicker/dist/react-datepicker.css";
+
+.react-datepicker-wrapper {
+  display: block !important;
+}
+
+// [Quill](https://quilljs.com/) - snow theme
+
+@import "~quill/dist/quill.snow.css";
+
+.quill-snow-overrides {
+  .ql-editor {
+    line-height: 1.5;
+    font-size: 1rem;
+
+    h1, h2, h3, h4 {
+      margin-bottom: .5rem;
+    }
+
+    p, ol, ul, blockquote {
+      margin-bottom: .25rem;
+    }
+  }
+}

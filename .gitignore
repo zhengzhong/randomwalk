@@ -8,7 +8,10 @@
 *.bak.*
 
 # VSCode
-/.vscode/
+.vscode/
+
+# IntelliJ IDEA
+.idea/
 
 # Explicitly excluded from version control
 *.vcignore

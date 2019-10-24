@@ -1,0 +1,22 @@
+// A vertical stack containing block child elements with vertical margin.
+// See: https://stackoverflow.com/a/6507081
+
+.stack-vertical-sm > * {
+  margin-top: .25rem !important;
+}
+
+.stack-vertical-md > * {
+  margin-top: .5rem !important;
+}
+
+.stack-vertical-lg > * {
+  margin-top: .75rem !important;
+}
+
+.stack-vertical-sm,
+.stack-vertical-md,
+.stack-vertical-lg {
+  & > *:first-child {
+    margin-top: 0 !important;
+  }
+}

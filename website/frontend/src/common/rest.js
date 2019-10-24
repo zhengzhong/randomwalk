@@ -44,10 +44,11 @@ function makePostFormOptions(formData) {
 }
 
 
-function createBackendError(message, response) {
-  const error = new Error(message);
+function createServerError(response, data) {
+  const error = new Error(`${response.url} - ${response.status}`);
   error.url = response.url;
   error.status = response.status;
+  error.data = data;
   return error;
 }
 
@@ -62,10 +63,10 @@ function handleJSONResponse(response) {
     return response.json()
       .then((data) => {
         console.log(`Got error JSON with status code: ${response.status} ( ${response.url}`);
-        throw createBackendError(data.message || 'An error occurred.', response);
+        throw createServerError(response, data);
       }, () => {
         console.log(`Fail to get error JSON with status code: ${response.status} ( ${response.url}`);
-        throw createBackendError('An error occurred.', response);
+        throw createServerError(response, null);
       });
   }
   if (response.status === 204) {
@@ -100,6 +101,12 @@ export default {
   put(url, payload) {
     console.log(`PUT ${url}`);
     return fetch(url, makeJSONOptions('PUT', payload))
+      .then(response => handleJSONResponse(response));
+  },
+
+  patch(url, payload) {
+    console.log(`PATCH ${url}`);
+    return fetch(url, makeJSONOptions('PATCH', payload))
       .then(response => handleJSONResponse(response));
   },
 

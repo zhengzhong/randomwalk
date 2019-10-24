@@ -14,8 +14,17 @@ module.exports = {
     // Windows style (CRLF) or UNIX style (LF only) are both OK.
     "linebreak-style": 0,
 
+    "max-len": ["error", {
+      "code": 120,
+      "ignoreTemplateLiterals": true,
+    }],
+
     // It's OK to use console. Console calls should be dropped in production build.
     "no-console": 0,
+
+    // It is not an error that a class method does not use `this`.
+    // But it's good to raise them as warnings.
+    "class-methods-use-this": "warn",
 
     // It's OK to use ++/-- in a for loop.
     "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
@@ -29,10 +38,9 @@ module.exports = {
     "no-unused-expressions": ["error", { "allowShortCircuit": true }],
 
     "object-curly-newline": ["error", {
-      "ObjectExpression": { "minProperties": 5, "consistent": true },
-      "ObjectPattern": { "minProperties": 5, "consistent": true },
-      "ExportDeclaration": { "minProperties": 5, "consistent": true },
-      "ImportDeclaration": "never",
+      "ObjectExpression": { "minProperties": 6, "consistent": true },
+      "ObjectPattern": { "minProperties": 6, "consistent": true },
+      "ExportDeclaration": { "minProperties": 6, "consistent": true },
     }],
 
     // Being consistent is more important than being concise. Readability counts.
@@ -45,6 +53,8 @@ module.exports = {
 
     // Deprecated. See: https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/label-has-for.md
     "jsx-a11y/label-has-for": 0,
+
+    "jsx-a11y/label-has-associated-control": ["error", { assert: "either" } ],
 
     // Destructuring assignment should be used as appropriate. No need to enforce its usage.
     "react/destructuring-assignment": 0,

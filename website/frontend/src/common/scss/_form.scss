@@ -1,0 +1,31 @@
+@import "~bootstrap/scss/variables";
+
+.form-control-xl {
+  padding: .5rem 1rem;
+  border-radius: .5rem;
+  font-size: 1.6rem;
+}
+
+.label {
+  display: inline-block;
+  margin-bottom: .5rem;
+  cursor: default;
+}
+
+.field-help {
+  display: block;
+  width: 100%;
+  margin-top: .25rem;
+  font-size: 85%;
+  color: $text-muted;
+}
+
+// An error feedback on an invalid form field, which is always visible regardless of whether the
+// sibling field has `is-invalid` class or not.
+.field-error {
+  display: block;
+  width: 100%;
+  margin-top: .25rem;
+  font-size: 85%;
+  color: $danger;
+}

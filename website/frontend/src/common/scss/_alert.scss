@@ -36,7 +36,9 @@
 }
 
 .alert-info {
-  border-color: $info;
+  color: $dark;
+  border-color: $light;
+  background-color: $light;
 }
 
 .alert-light {

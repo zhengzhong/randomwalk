@@ -1,73 +1,144 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Pagination({ pagination, onClickPage }) {
-  if (!pagination) {
-    return <div />;
-  }
+import queryString from 'query-string';
 
-  // Build links to a range of pages.
-  const firstPageNumber = Math.max(pagination.number - 5, 1);
-  const lastPageNumber = Math.min(pagination.number + 5, pagination.num_pages);
-  const $pageLinks = [];
-  for (let i = firstPageNumber; i <= lastPageNumber; i++) {
-    let $pageLink = null;
-    if (i === pagination.number) {
-      $pageLink = (
-        <li key={i} className="page-item active">
-          <span className="page-link">{i}</span>
-        </li>
-      );
-    } else {
-      $pageLink = (
-        <li key={i} className="page-item">
-          <button className="page-link" type="button" onClick={() => onClickPage(i)}>{i}</button>
-        </li>
-      );
-    }
-    $pageLinks.push($pageLink);
-  }
 
-  // Add links to the first and last page if necessary.
-  if (firstPageNumber > 1) {
-    $pageLinks.unshift((
-      <li className="page-item">
-        <button className="page-link" type="button" onClick={() => onClickPage(1)}>
-          <span>&laquo;&laquo;</span>
-        </button>
-      </li>
-    ));
+/**
+ * Parses and extracts the `page` query param from the URL string. We cannot use `URL` class
+ * because it is not supported by IE.
+ */
+function parsePageQueryParam(urlString) {
+  if (!urlString) {
+    return null;
   }
-  if (lastPageNumber < pagination.num_pages) {
-    $pageLinks.push((
-      <li className="page-item">
-        <button className="page-link" type="button" onClick={() => onClickPage(pagination.num_pages)}>
-          <span>&raquo;&raquo;</span>
-        </button>
-      </li>
-    ));
+  const match = urlString.match(/^[^?]*\?([^#]*)(?:#.*)?$/);
+  if (!match) {
+    return null;
   }
-
-  // Render the pagination.
-  return (
-    <nav>
-      <ul className="pagination justify-content-center">
-        {$pageLinks}
-      </ul>
-    </nav>
-  );
+  const search = match[1];
+  const query = queryString.parse(search);
+  return query.page || null;
 }
 
+
+/**
+ * A fully uncontrolled component to load and render paginated results.
+ *
+ * The component uses the `status` state to control how the pager will be rendered:
+ *
+ * - null: The initial page has not yet been loaded.
+ * - 'loading': We are currently loading a page.
+ * - 'ready': All requested pages have been loaded.
+ * - an Error instance: An error occurred when loading page.
+ */
+export default class Pagination extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      status: null,
+      results: [],
+      nextPageNumber: null,
+    };
+    this.loadPage = this.loadPage.bind(this);
+  }
+
+  componentDidMount() {
+    this.loadPage(this.props.initialPageNumber);
+  }
+
+  loadPage(pageNumber) {
+    this.setState({ status: 'loading' }, () => {
+      Promise.resolve(this.props.onLoadPage(pageNumber))
+        .then((page) => {
+          this.setState((prevState) => {
+            const results = prevState.results.concat(page.results || []);
+            const nextPageNumber = parsePageQueryParam(page.next);
+            return {
+              status: 'ready',
+              results: results,
+              nextPageNumber: nextPageNumber,
+            };
+          });
+        })
+        .catch((error) => {
+          console.log(`Fail to load page ${pageNumber}: ${error}`);
+          this.setState({ status: error });
+        });
+    });
+  }
+
+  renderLoadMore() {
+    const { status, nextPageNumber } = this.state;
+
+    if (status === null || status === 'loading') {
+      return (
+        <div className="text-center m-4">
+          <div className="spinner-grow text-muted" role="status">
+            <span className="sr-only">Loading...</span>
+          </div>
+        </div>
+      );
+    }
+    if (status instanceof Error) {
+      return (
+        <div className="text-danger m-4">
+          Fail to load data.
+        </div>
+      );
+    }
+
+    if (nextPageNumber === null) {
+      return <React.Fragment />;
+    }
+    return (
+      <div className="text-center m-4">
+        <button
+          className="anchor text-muted text-decoration-none"
+          type="button"
+          onClick={() => this.loadPage(nextPageNumber)}
+        >
+          Load More
+        </button>
+      </div>
+    );
+  }
+
+  render() {
+    const { status, results } = this.state;
+
+    // Render results only after the initial page is loaded. We call `this.props.children()` only
+    // if the loaded results are not empty. Otherwise, we render a generic alert.
+    let $results = null;
+    if (status !== null) {
+      if (results.length > 0) {
+        $results = this.props.children(results);
+      } else {
+        $results = (
+          <div className="alert alert-info">
+            <i className="fas fa-info-circle mr-1" />
+            No results found.
+          </div>
+        );
+      }
+    }
+
+    return (
+      <React.Fragment>
+        {$results}
+        {this.renderLoadMore()}
+      </React.Fragment>
+    );
+  }
+}
+
+
 Pagination.propTypes = {
-  pagination: PropTypes.shape({
-    num_pages: PropTypes.number.isRequired,
-    number: PropTypes.number.isRequired,
-  }),
-  onClickPage: PropTypes.func.isRequired,
+  initialPageNumber: PropTypes.number,
+  onLoadPage: PropTypes.func.isRequired,
+  children: PropTypes.func.isRequired,
 };
 
 Pagination.defaultProps = {
-  pagination: null,
+  initialPageNumber: 1,
 };
-
-export default Pagination;
