@@ -1,15 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import AccountsPropTypes from './prop-types';
-import { profileDetailPath } from './paths';
+import { absoluteUrl, profileDetailPath } from './paths';
 
 
 export default function UserLink({ user, ...props }) {
+  // TODO: How to build a cross-app link?
   return (
-    <Link {...props} to={profileDetailPath(user)}>
+    <a {...props} href={absoluteUrl(profileDetailPath(user))}>
       {user.display_name || user.username }
-    </Link>
+    </a>
   );
 }
 

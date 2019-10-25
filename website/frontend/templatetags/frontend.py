@@ -4,15 +4,8 @@ from django import template
 from django.conf import settings
 from django.templatetags.static import static
 
-from ..appconf import app_settings
-
 
 register = template.Library()
-
-
-@register.simple_tag
-def frontend_router_basename(mount_path):
-    return '/{}{}'.format(app_settings.URL_PATH_PREFIX, mount_path.rstrip('/'))
 
 
 @register.simple_tag

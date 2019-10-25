@@ -140,9 +140,7 @@ export default class SubscriberCreate extends React.Component {
 
         {this.renderBreadcrumb()}
 
-        <section>
-          <h1 className="lighter">Subscribe to {activity.title}</h1>
-        </section>
+        <h1 className="section">Subscribe to {activity.title}</h1>
 
         <div className="row">
 

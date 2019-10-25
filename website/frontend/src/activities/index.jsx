@@ -8,6 +8,8 @@ import '../components/style.scss';
 
 import accountsBackend from '../accounts/backend';
 
+import { APP_BASENAME } from './paths';
+
 import Topbar from './Topbar';
 
 import Home from './Home';
@@ -55,21 +57,11 @@ class Index extends React.Component {
   }
 
   render() {
-    if (!window.appRouterBasename) {
-      console.error('Cannot find router basename (`window.appRouterBasename`).');
-      return (
-        <div className="alert alert-danger">
-          Application is not properly configured: Cannot find router basename.
-        </div>
-      );
-    }
-
     const { status } = this.state;
     if (status === null || status instanceof Error) {
       return <LoadingOrError status={status} />;
     }
 
-    const basename = window.appRouterBasename;
     const { currentUser } = this.state;
 
     const renderHome = props => <Home {...props} currentUser={currentUser} />;
@@ -88,7 +80,7 @@ class Index extends React.Component {
     return (
       <React.Fragment>
         <Topbar currentUser={currentUser} />
-        <BrowserRouter basename={basename}>
+        <BrowserRouter basename={APP_BASENAME}>
           <div id="main" className="container">
 
             <Switch>

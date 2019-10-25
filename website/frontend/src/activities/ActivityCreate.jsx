@@ -137,7 +137,7 @@ export default class ActivityCreate extends React.Component {
     return (
       <div>
         {this.renderBreadcrumb()}
-        <h1 className="lighter">Create</h1>
+        <h1 className="section">Create</h1>
         <ActivityForm
           key={formKey}
           activity={activity}

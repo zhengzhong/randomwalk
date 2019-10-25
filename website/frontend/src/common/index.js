@@ -13,8 +13,8 @@ import 'whatwg-fetch';
 import 'holderjs/holder';
 
 // Our Bootstrap-based stylesheet.
-// import './scss/coral.scss';
-import './scss/purple.scss';
+import './scss/coral.scss';
+// import './scss/purple.scss';
 
 // To allow using jQuery in HTML pages, we add `jQuery` and `$` to global scope.
 import jQuery from 'jquery';

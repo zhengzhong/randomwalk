@@ -85,7 +85,7 @@ export default class Login extends React.Component {
     return (
       <div>
 
-        <h1 className="lighter">Login</h1>
+        <h1 className="section">Login</h1>
 
         <ErrorAlert error={authError} />
 

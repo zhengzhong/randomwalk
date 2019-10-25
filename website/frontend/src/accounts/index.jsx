@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
+import { APP_BASENAME } from './paths';
 import Login from './Login';
 import Logout from './Logout';
 import MyProfile from './MyProfile';
@@ -12,15 +13,8 @@ import '../components/style.scss';
 
 function Index() {
   document.title = 'Accounts';
-
-  if (!window.appRouterBasename) {
-    console.error('Cannot find router basename (`window.appRouterBasename`).');
-    return <div />;
-  }
-
-  const basename = window.appRouterBasename;
   return (
-    <BrowserRouter basename={basename}>
+    <BrowserRouter basename={APP_BASENAME}>
       <div className="container">
         <Switch>
           <Route exact path="/login" component={Login} />

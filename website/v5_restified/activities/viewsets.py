@@ -88,7 +88,7 @@ class ActivityFilterBackend(BaseFilterBackend):
             if tag:
                 filter_kwargs['tags__name'] = tag
 
-            queryset = queryset.filter(**filter_kwargs).order_by('scheduled_date')
+            queryset = queryset.filter(**filter_kwargs).order_by('-scheduled_date')
         return queryset
 
 

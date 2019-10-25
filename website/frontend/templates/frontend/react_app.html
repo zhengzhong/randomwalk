@@ -19,9 +19,6 @@
     <script src="{% static 'frontend/dist/vendors.bundle.js' %}"></script>
     <script src="{% static 'frontend/dist/common.bundle.js' %}"></script>
     <script src="{% static 'frontend/dist/spa.bundle.js' %}"></script>
-    <script>
-      window.appRouterBasename = "{% frontend_router_basename app_name %}";
-    </script>
     <script src="{% frontend_js app_name %}"></script>
   </body>
 </html>

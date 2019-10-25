@@ -1,3 +1,9 @@
+export const APP_BASENAME = '/frontend/accounts';
+
+export function absoluteUrl(path) {
+  return `${APP_BASENAME}${path}`;
+}
+
 export function loginPath() {
   return '/login';
 }

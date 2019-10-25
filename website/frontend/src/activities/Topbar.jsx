@@ -1,26 +1,28 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import AccountsPropTypes from '../accounts/prop-types';
+import { absoluteUrl, loginPath, logoutPath, myProfilePath } from '../accounts/paths';
 
-import { FRONTEND_URL_PREFIX } from '../settings';
+import { APP_BASENAME } from './paths';
 
 
 function encodeNextUrl() {
   return encodeURIComponent(`${window.location.pathname}${window.location.search}${window.location.hash}`);
 }
 
-function loginPath() {
+function buildLoginPath() {
   const next = encodeNextUrl();
-  return `${FRONTEND_URL_PREFIX}accounts/login?next=${next}`;
+  return `${absoluteUrl(loginPath())}?next=${next}`;
 }
 
-function logoutPath() {
+function buildLogoutPath() {
   const next = encodeNextUrl();
-  return `${FRONTEND_URL_PREFIX}accounts/logout?next=${next}`;
+  return `${absoluteUrl(logoutPath())}?next=${next}`;
 }
 
-function myProfilePath() {
-  return `${FRONTEND_URL_PREFIX}accounts/profile/my`;
+function buildMyProfilePath() {
+  return absoluteUrl(myProfilePath());
 }
 
 
@@ -34,29 +36,24 @@ export default class Topbar extends React.Component {
   // eslint-disable-next-line class-methods-use-this
   onLogin(event) {
     event.preventDefault();
-    window.location.href = loginPath();
+    window.location.href = buildLoginPath();
   }
 
   // eslint-disable-next-line class-methods-use-this
   onLogout(event) {
     event.preventDefault();
-    window.location.href = logoutPath();
+    window.location.href = buildLogoutPath();
   }
 
   // eslint-disable-next-line class-methods-use-this
   renderMainNav() {
+    // TODO: We should NOT use Link outside a Router. So we need to build absolute URL.
     return (
       <ul className="navbar-nav mr-auto">
         <li className="nav-item">
-          <a className="nav-link" href="#TODO">
-            <i className="fas fa-rocket mr-1" />
-            Jobs
-          </a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" href="#TODO">
-            <i className="fas fa-cogs mr-1" />
-            Config Groups
+          <a className="nav-link" href={APP_BASENAME}>
+            <i className="fas fa-home mr-1" />
+            Home
           </a>
         </li>
       </ul>
@@ -79,7 +76,7 @@ export default class Topbar extends React.Component {
               {currentUser.display_name || currentUser.username}
             </a>
             <div className="dropdown-menu dropdown-menu-right">
-              <a className="dropdown-item" href={myProfilePath()}>
+              <a className="dropdown-item" href={buildMyProfilePath()}>
                 <i className="fas fa-id-card mr-1" />
                 Profile
               </a>

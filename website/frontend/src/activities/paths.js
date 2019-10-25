@@ -1,3 +1,5 @@
+export const APP_BASENAME = '/frontend/activities';
+
 export function homePath() {
   return '/';
 }
