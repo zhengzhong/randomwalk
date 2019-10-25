@@ -177,7 +177,7 @@ export default class SubscriberList extends React.Component {
 
     const $subscribers = subscribers.map((subscriber) => {
       const $customFieldItems = subscriber.custom_fields.map(field => (
-        <li key={field.uniqueId}>
+        <li key={field.uid}>
           <strong className="mr-2">{field.title}</strong>
           <span>{field.value}</span>
         </li>

@@ -185,7 +185,7 @@ export default class SubscriberDetail extends React.Component {
     }
 
     const $customFieldRows = subscriber.custom_fields.map(field => (
-      <tr key={field.uniqueId}>
+      <tr key={field.uid}>
         <th>{field.title}</th>
         <td>{field.value}</td>
       </tr>

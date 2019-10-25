@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { randomId } from '../common/utils';
 
-import ActivityPropTypes from './prop-types';
+import ActivitiesPropTypes from './prop-types';
 import {
   SUBSCRIPTION_FIELD_CHOICES,
   SUBSCRIPTION_FIELD_TYPES,
@@ -54,12 +54,12 @@ function SubscriptionFieldConfig({ field, onMove, onDelete, onChange }) {
       </div>
 
       <div className="form-group row">
-        <label htmlFor={`${field.uniqueId}_title`} className="col-sm-2 col-form-label">
+        <label htmlFor={`${field.uid}_title`} className="col-sm-2 col-form-label">
           Title
         </label>
         <div className="col-sm-10">
           <input
-            id={`${field.uniqueId}_title`}
+            id={`${field.uid}_title`}
             className="form-control"
             type="text"
             value={field.title}
@@ -70,12 +70,12 @@ function SubscriptionFieldConfig({ field, onMove, onDelete, onChange }) {
 
       {field.type === SINGLE_CHOICE_SELECT && (
         <div className="form-group row">
-          <label htmlFor={`${field.uniqueId}_choices`} className="col-sm-2 col-form-label">
+          <label htmlFor={`${field.uid}_choices`} className="col-sm-2 col-form-label">
             Choices
           </label>
           <div className="col-sm-10">
             <textarea
-              id={`${field.uniqueId}_choices`}
+              id={`${field.uid}_choices`}
               className="form-control"
               rows="8"
               value={field.choices}
@@ -91,13 +91,13 @@ function SubscriptionFieldConfig({ field, onMove, onDelete, onChange }) {
         <div className="col-sm-10">
           <div className="form-group form-check">
             <input
-              id={`${field.uniqueId}_required`}
+              id={`${field.uid}_required`}
               className="form-check-input"
               type="checkbox"
               checked={field.required}
               onChange={event => onChange(field, 'required', event.target.checked)}
             />
-            <label htmlFor={`${field.uniqueId}_required`} className="form-check-label">
+            <label htmlFor={`${field.uid}_required`} className="form-check-label">
               This field is required.
             </label>
           </div>
@@ -109,12 +109,7 @@ function SubscriptionFieldConfig({ field, onMove, onDelete, onChange }) {
 }
 
 SubscriptionFieldConfig.propTypes = {
-  field: PropTypes.shape({
-    uniqueId: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    required: PropTypes.bool.isRequired,
-  }).isRequired,
+  field: ActivitiesPropTypes.activityCustomSubscriptionField().isRequired,
   onMove: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
@@ -129,7 +124,7 @@ export default function ActivityFormSubscription({ activity, errors, onChange })
 
   const onAddField = (type) => {
     const field = {
-      uniqueId: randomId('field_'),
+      uid: randomId('field_'),
       type: type,
       title: '',
       choices: '',
@@ -141,9 +136,9 @@ export default function ActivityFormSubscription({ activity, errors, onChange })
 
   const onMoveField = (field, direction) => {
     const fields = activity.custom_subscription_fields.slice();
-    const index = fields.findIndex(item => item.uniqueId === field.uniqueId);
+    const index = fields.findIndex(item => item.uid === field.uid);
     if (index < 0) {
-      console.log(`Cannot find field with unique: ID ${field.uniqueId}`);
+      console.log(`Cannot find field with uid: ${field.uid}`);
       return;
     }
     if (direction === 'up' && index - 1 >= 0) {
@@ -158,15 +153,15 @@ export default function ActivityFormSubscription({ activity, errors, onChange })
 
   const onDeleteField = (field) => {
     const fields = activity.custom_subscription_fields
-      .filter(item => item.uniqueId !== field.uniqueId);
+      .filter(item => item.uid !== field.uid);
     onChange('custom_subscription_fields', fields);
   };
 
   const onChangeField = (field, propName, value) => {
     const fields = activity.custom_subscription_fields.slice();
-    const index = fields.findIndex(item => item.uniqueId === field.uniqueId);
+    const index = fields.findIndex(item => item.uid === field.uid);
     if (index < 0) {
-      console.log(`Cannot find field with unique ID: ${field.uniqueId}`);
+      console.log(`Cannot find field with uid: ${field.uid}`);
       return;
     }
     fields[index] = Object.assign({}, fields[index], { [propName]: value });
@@ -217,7 +212,7 @@ export default function ActivityFormSubscription({ activity, errors, onChange })
           <div className="col-8">
             {activity.custom_subscription_fields.map(field => (
               <SubscriptionFieldConfig
-                key={field.uniqueId}
+                key={field.uid}
                 field={field}
                 onMove={onMoveField}
                 onDelete={onDeleteField}
@@ -284,7 +279,7 @@ export default function ActivityFormSubscription({ activity, errors, onChange })
 
 
 ActivityFormSubscription.propTypes = {
-  activity: ActivityPropTypes.activity({ persisted: false }).isRequired,
+  activity: ActivitiesPropTypes.activity({ persisted: false }).isRequired,
   errors: PropTypes.objectOf(PropTypes.string),
   onChange: PropTypes.func.isRequired,
 };

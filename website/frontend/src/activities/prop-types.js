@@ -11,6 +11,15 @@ function group() {
   });
 }
 
+function activityCustomSubscriptionField() {
+  return PropTypes.shape({
+    uid: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    required: PropTypes.bool.isRequired,
+  });
+}
+
 function activity({ persisted }) {
   const shape = {
     pk: PropTypes.number,
@@ -24,7 +33,7 @@ function activity({ persisted }) {
     // they may take string values.
     max_headcount: PropTypes.oneOfType([PropTypes.number, PropTypes.string]), // nullable
     base_price: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-    custom_subscription_fields: PropTypes.array.isRequired,
+    custom_subscription_fields: PropTypes.arrayOf(activityCustomSubscriptionField()).isRequired,
     subscription_notice: PropTypes.string.isRequired,
     accept_online_payment: PropTypes.bool.isRequired,
     is_published: PropTypes.bool.isRequired,
@@ -43,6 +52,14 @@ function activity({ persisted }) {
   return PropTypes.shape(shape);
 }
 
+function subscriberCustomField() {
+  return PropTypes.shape({
+    uid: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired,
+  });
+}
+
 function subscriber({ persisted }) {
   const shape = {
     pk: PropTypes.number,
@@ -50,11 +67,7 @@ function subscriber({ persisted }) {
     email: PropTypes.string.isRequired,
     phone_number: PropTypes.string.isRequired,
     message: PropTypes.string.isRequired,
-    custom_fields: PropTypes.arrayOf(PropTypes.shape({
-      uniqueId: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-      value: PropTypes.string.isRequired,
-    })).isRequired,
+    custom_fields: PropTypes.arrayOf(subscriberCustomField()).isRequired,
   };
   if (persisted) {
     Object.assign(shape, {
@@ -74,5 +87,7 @@ function subscriber({ persisted }) {
 
 export default {
   activity,
+  activityCustomSubscriptionField,
   subscriber,
+  subscriberCustomField,
 };

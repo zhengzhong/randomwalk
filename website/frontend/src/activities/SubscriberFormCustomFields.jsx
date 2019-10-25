@@ -13,7 +13,7 @@ import {
 
 function CustomField({ fieldConfig, customField, onChange }) {
   let $label = (
-    <label htmlFor={fieldConfig.uniqueId}>
+    <label htmlFor={fieldConfig.uid}>
       {fieldConfig.title}
     </label>
   );
@@ -21,7 +21,7 @@ function CustomField({ fieldConfig, customField, onChange }) {
   if (fieldConfig.type === SINGLE_LINE_TEXT) {
     $input = (
       <input
-        id={fieldConfig.uniqueId}
+        id={fieldConfig.uid}
         className="form-control"
         type="text"
         value={customField.value}
@@ -31,7 +31,7 @@ function CustomField({ fieldConfig, customField, onChange }) {
   } else if (fieldConfig.type === MULTI_LINE_TEXT) {
     $input = (
       <textarea
-        id={fieldConfig.uniqueId}
+        id={fieldConfig.uid}
         className="form-control"
         rows="8"
         value={customField.value}
@@ -42,7 +42,7 @@ function CustomField({ fieldConfig, customField, onChange }) {
     const optionValues = parseFieldChoices(fieldConfig.choices);
     $input = (
       <select
-        id={fieldConfig.uniqueId}
+        id={fieldConfig.uid}
         className="form-control"
         value={customField.value}
         onChange={event => onChange(fieldConfig, event.target.value)}
@@ -56,17 +56,18 @@ function CustomField({ fieldConfig, customField, onChange }) {
     );
   } else if (fieldConfig.type === CHECKBOX) {
     // Checkbox has a different layout for its label.
+    // If it's checked, its value is set to the field title. Otherwise, its value is 'NO'.
     $label = null;
     $input = (
       <div className="form-group form-check">
         <input
-          id={fieldConfig.uniqueId}
+          id={fieldConfig.uid}
           className="form-check-input"
           type="checkbox"
-          checked={customField.value === 'on'}
-          onChange={event => onChange(fieldConfig, event.target.checked ? 'on' : 'off')}
+          checked={customField.value === fieldConfig.title}
+          onChange={event => onChange(fieldConfig, event.target.checked ? fieldConfig.title : 'NO')}
         />
-        <label htmlFor={fieldConfig.uniqueId} className="form-check-label">
+        <label htmlFor={fieldConfig.uid} className="form-check-label">
           {fieldConfig.title}
         </label>
       </div>
@@ -79,7 +80,7 @@ function CustomField({ fieldConfig, customField, onChange }) {
   }
 
   return (
-    <div key={fieldConfig.uniqueId} className="form-group row">
+    <div key={fieldConfig.uid} className="form-group row">
       <div className="col-sm-4">
         {$label}
       </div>
@@ -91,17 +92,8 @@ function CustomField({ fieldConfig, customField, onChange }) {
 }
 
 CustomField.propTypes = {
-  fieldConfig: PropTypes.shape({
-    uniqueId: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    required: PropTypes.bool.isRequired,
-  }).isRequired,
-  customField: PropTypes.shape({
-    uniqueId: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired,
-  }).isRequired,
+  fieldConfig: ActivitiesPropTypes.activityCustomSubscriptionField().isRequired,
+  customField: ActivitiesPropTypes.subscriberCustomField().isRequired,
   onChange: PropTypes.func.isRequired,
 };
 
@@ -114,23 +106,23 @@ export default function SubscriberFormCustomFields({ activity, subscriber, error
 
   const onChangeCustomField = (fieldConfig, value) => {
     const customField = {
-      uniqueId: fieldConfig.uniqueId,
+      uid: fieldConfig.uid,
       title: fieldConfig.title,
       value: value,
     };
     const customFields = subscriber.custom_fields
-      .filter(item => item.uniqueId !== fieldConfig.uniqueId)
+      .filter(item => item.uid !== fieldConfig.uid)
       .concat([customField]);
     onChange('custom_fields', customFields);
   };
 
   const $customFields = activity.custom_subscription_fields.map((fieldConfig) => {
     // Find or create a custom field on the subscriber.
-    let customField = subscriber.custom_fields.find(item => item.uniqueId === fieldConfig.uniqueId);
+    let customField = subscriber.custom_fields.find(item => item.uid === fieldConfig.uid);
     if (customField === undefined) {
       console.error(`Cannot find custom field ${fieldConfig.title} in subscriber.`);
       customField = {
-        uniqueId: fieldConfig.uniqueId,
+        uid: fieldConfig.uid,
         title: fieldConfig.title,
         value: fieldConfig.type === CHECKBOX ? 'off' : '',
       };
@@ -138,7 +130,7 @@ export default function SubscriberFormCustomFields({ activity, subscriber, error
     // Render the custom field.
     return (
       <CustomField
-        key={fieldConfig.uniqueId}
+        key={fieldConfig.uid}
         fieldConfig={fieldConfig}
         customField={customField}
         onChange={onChangeCustomField}

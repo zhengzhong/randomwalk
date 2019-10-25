@@ -17,11 +17,11 @@ function cloneAndCleanSubscriber(subscriber, activity) {
   for (let i = 0; i < activity.custom_subscription_fields.length; i++) {
     const fieldConfig = activity.custom_subscription_fields[i];
     let customField = subscriber.custom_fields
-      .find(item => item.uniqueId === fieldConfig.uniqueId);
+      .find(item => item.uid === fieldConfig.uid);
     if (customField === undefined) {
       customField = {
-        uniqueId: fieldConfig.uniqueId,
-        title: fieldConfig.uniqueId,
+        uid: fieldConfig.uid,
+        title: fieldConfig.title,
         value: fieldConfig.type === CHECKBOX ? 'off' : '',
       };
     }
@@ -87,16 +87,15 @@ export default class SubscriberForm extends React.Component {
     const { activity } = this.props;
     for (let i = 0; i < activity.custom_subscription_fields.length; i++) {
       const fieldConfig = activity.custom_subscription_fields[i];
-      const customField = cleaned.custom_fields
-        .find(item => item.uniqueId === fieldConfig.uniqueId);
+      const customField = cleaned.custom_fields.find(item => item.uid === fieldConfig.uid);
       // Check if the current custom field is valid.
       let isValid = true;
       if (customField === undefined) {
         isValid = false;
       } else if (fieldConfig.required) {
         if (fieldConfig.type === CHECKBOX) {
-          // Required checkbox must be checked, with value `on`.
-          isValid = (customField.value === 'on');
+          // Required checkbox must be checked, so its value should be the same as the field title.
+          isValid = (customField.value === fieldConfig.title);
         } else {
           isValid = customField.value.trim() !== '';
         }

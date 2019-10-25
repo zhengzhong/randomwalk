@@ -3,7 +3,7 @@ import React from 'react';
 import { prettifyDate } from '../common/utils';
 import { UserMedia, UserLink } from '../accounts/components';
 
-import ActivityPropTypes from './prop-types';
+import ActivitiesPropTypes from './prop-types';
 
 
 export default function ActivitySidebar({ activity }) {
@@ -70,5 +70,5 @@ export default function ActivitySidebar({ activity }) {
 }
 
 ActivitySidebar.propTypes = {
-  activity: ActivityPropTypes.activity({ requiresPersisted: true }).isRequired,
+  activity: ActivitiesPropTypes.activity({ persisted: true }).isRequired,
 };
