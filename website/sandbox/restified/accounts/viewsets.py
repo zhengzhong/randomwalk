@@ -12,7 +12,7 @@ from rest_framework.status import HTTP_204_NO_CONTENT
 
 from v5.accounts.models import Profile, Notification
 
-from drfutils.viewsets import NonModelViewSet
+from sandbox.drfutils.viewsets import NonModelViewSet
 
 from .serializers import (
     ProfileSerializer, ProfileAvatarSerializer, ProfileWithSensitiveDataSerializer,

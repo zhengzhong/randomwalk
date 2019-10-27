@@ -4,7 +4,7 @@ import logging
 
 from rest_framework import serializers
 
-from v5_restified.accounts.serializers import UserSerializer
+from sandbox.restified.accounts.serializers import UserSerializer
 
 from v5.activities.models import Group, Activity, Subscriber
 from v5.tagging.models import TaggedItem

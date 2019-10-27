@@ -13,7 +13,7 @@ from rest_framework.permissions import BasePermission, IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from rest_framework.status import HTTP_204_NO_CONTENT
 
-from drfutils.permissions import DenyAll
+from sandbox.drfutils.permissions import DenyAll
 
 from v5.activities.models import Group, GroupMember, Activity, Subscriber
 

@@ -1,0 +1,15 @@
+@import "~bootstrap/scss/variables";
+
+.navbar.navbar-dark {
+  background-color: $primary;
+}
+
+.navbar {
+  .navbar-brand-logo {
+    display: inline-block;
+    margin: -.5rem 1rem -.5rem 0;
+    img {
+      max-height: 48px;
+    }
+  }
+}

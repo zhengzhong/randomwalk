@@ -7,8 +7,8 @@ from rest_framework.schemas import get_schema_view
 
 
 urlpatterns = [
-    path('v3/accounts/', include('v5_restified.accounts.urls')),
-    path('v3/activities/', include('v5_restified.activities.urls')),
+    path('v3/accounts/', include('sandbox.restified.accounts.urls')),
+    path('v3/activities/', include('sandbox.restified.activities.urls')),
 
     path('v3/_meta/auth/', include('rest_framework.urls')),
 
